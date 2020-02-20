@@ -20,6 +20,7 @@ function init () {
   const CLEARLINE = '\x1b[2K\r'
   let cmd = ''
   let lastCommand = ''
+  const state = { path: '/' }
   const term = new window.Terminal()
 
   term.open(document.getElementById('terminal'))
@@ -50,14 +51,21 @@ function init () {
           term.write(`${NL}${msg}${PROMPT}`)
           lastCommand = cmd
           return
+        } else if (command === 'clear') {
+          term.write(CLEARLINE)
+          cmd = ''
+          term.clear()
+          term.write(LS)
+          // setTimeout(() => term.clear(), 20)
+          return
         }
-        const message = await exec(cmd.trim())
+        const message = await exec(cmd.trim(), state)
         if (message !== false) {
           const sanitized = message.replace(/\n/g, '\r\n')
           term.write(`${NL}${sanitized}${PROMPT}`)
         } else {
-          if (await exec(command)) {
-            term.write(`${NL}${COLOR_RED}unknown arguments "${args}" for command: ${command}${COLOR_WHITE}${PROMPT}`)
+          if (await exec(command, state)) {
+            term.write(`${NL}${COLOR_RED}invalid argument(s) "${args}" for command: ${command}${COLOR_WHITE}${PROMPT}`)
           } else {
             term.write(`${NL}${COLOR_RED}unknown command: ${command}${COLOR_WHITE}${PROMPT}`)
           }
@@ -74,6 +82,8 @@ function init () {
           cmd = cmd.slice(0, cmd.length - 1)
           term.write('\b \b')
         }
+      } else if (keyCode === 9) {
+        // ignore tabs
       } else if (keyCode === 40 || keyCode === 38) {
         // up / down
         if (keyCode === 38) {
