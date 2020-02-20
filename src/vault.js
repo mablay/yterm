@@ -16,6 +16,7 @@ fetch('./src/cyphermap.json')
 // }
 
 async function exec (key) {
+  
   const hash = await sdigest(key)
   if (!(hash in cmdmap)) return false
   const cypher = cmdmap[hash]
