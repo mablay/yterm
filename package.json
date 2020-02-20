@@ -9,8 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "crypto-js": "^4.0.0",
-    "xterm": "^4.4.0"
+  "dependencies": {},
+  "devDependencies": {
+    "crypto-js": "^4.0.0"
   }
 }
