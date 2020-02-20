@@ -24,13 +24,11 @@ function init () {
 
     term.onLineFeed(async (e) => {
     })
-
     term.onKey(async e => {
       term.setOption('cursorBlink', false)
       
       // console.log('keyCode:', e.domEvent.keyCode)
       const keyCode = e.domEvent.keyCode
-      term.write(`${COLOR_RED}${keyCode}${COLOR_WHITE}`)
       const printable = !e.domEvent.altKey && !e.domEvent.altGraphKey && !e.domEvent.ctrlKey && !e.domEvent.metaKey
 
       if (keyCode === 13) {
