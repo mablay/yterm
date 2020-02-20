@@ -22,6 +22,7 @@ function init () {
   let lastCommand = ''
   const state = { path: '/' }
   const term = new window.Terminal()
+  window.term = term
 
   term.open(document.getElementById('terminal'))
 
