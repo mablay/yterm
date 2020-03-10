@@ -1,7 +1,11 @@
-# YTerm
+![status alpha](https://img.shields.io/badge/status-alpha-yellow)
 
-Status: in development!
+# Y-Term
 
-## Purpose
+Y-Term is a tiny interactive console challenge. It will test your
+ability to interact with a unix like shell.
 
-YTerm is a game / challenge to test your SW dev skills.
+Further development depends on usage.
+
+
+![screenshot](https://github.com/mablay/yterm/blob/master/screenshot.png)
