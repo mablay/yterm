@@ -7,7 +7,7 @@ window.mobilecheck = function() {
 function init () {
   if (window.mobilecheck()) {
     const el = document.getElementById('terminal')
-    el.innerHTML = 'Mobile devices are not supported!'
+    el.innerHTML = '<div class="no-mobile">Mobile devices are not supported! 😭<br><br>Pull requests are welcome.</div>'
     console.warn('Doesn\'t work with mobil devices')
     return
   }
@@ -32,7 +32,7 @@ function init () {
 
     term.prompt = () => { term.write(PROMPT) }
 
-    term.writeln('#!/bin/bash - \x1B[2mFollow the white rabbit!\x1B[22m')
+    term.writeln('#!/bin/sh \x1B[2m- You\'re not in Kansas anymore!\x1B[22m')
     term.prompt()
 
     term.onKey(async e => {
@@ -90,6 +90,10 @@ function init () {
         if (keyCode === 38) {
           term.write(`${CLEARLINE}${LS}${lastCommand}`)
           cmd = lastCommand
+        }
+        if (keyCode === 40) {
+          term.write(`${CLEARLINE}${LS}`)
+          cmd = ''
         }
       } else if (printable) {
         term.write(e.key)

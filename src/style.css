@@ -2,3 +2,8 @@ html, body {
   background-color: black;
   color: white;
 }
+
+.no-mobile {
+  font-size: 24px;
+  color: darkorange;
+}
