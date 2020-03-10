@@ -48,9 +48,11 @@ function init () {
         }
         const [command, ...args] = cmd.split(' ')
         if (command === 'encrypt') {
-          const msg = await encrypt(args[0], args[1])
-          term.write(`${NL}${msg}${PROMPT}`)
+          const msg = await encrypt(args.shift(), args.join(' '))
+          console.log(msg)
+          term.write(`${NL}key:   ${msg.key}${NL}value: ${msg.value}${NL}${PROMPT}`)
           lastCommand = cmd
+          cmd = ''
           return
         } else if (command === 'clear') {
           term.write(CLEARLINE)
